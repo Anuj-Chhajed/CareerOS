@@ -1,5 +1,12 @@
 const { PDFParse } = require('pdf-parse')
-const { cleanText } = require("../utils/textCleaner")
+
+const cleanText = (text) => {
+  return text
+    .replace(/--\s*\d+\s*of\s*\d+\s*--/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/●/g, " ")
+    .trim()
+}
 
 exports.parsePDF = async (buffer) => {
   const parser = new PDFParse({ data: buffer })

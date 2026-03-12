@@ -1,8 +1,8 @@
-const Groq = require("groq-sdk");
+const Groq = require("groq-sdk")
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 exports.extractStructuredData = async (text, type) => {
-  const safeText = text.slice(0, 25000);
+  const safeText = text.slice(0, 25000)
   const prompt = `
   You are an Expert Resume Parser with "Smart Aggregation" capabilities.
   
@@ -81,38 +81,36 @@ exports.extractStructuredData = async (text, type) => {
       model: "llama-3.3-70b-versatile",
       messages: [
         { role: "system", content: "You are a deterministic parser for resumes." },
-        { role: "user", content: prompt },
+        { role: "user", content: prompt }
       ],
       temperature: 0,
       max_completion_tokens: 3000
-    });
+    })
 
-    const raw = response.choices[0]?.message?.content?.trim();
+    const raw = response.choices[0]?.message?.content?.trim()
 
-    // Extract JSON block safely
-    const jsonMatch = raw.match(/\{[\s\S]*\}/);
+    const jsonMatch = raw.match(/\{[\s\S]*\}/)
 
     if (!jsonMatch) {
-      console.error("No JSON found:", raw);
-      throw new Error("AI returned non-JSON output");
+      console.error("No JSON found:", raw)
+      throw new Error("AI returned non-JSON output")
     }
 
     try {
-      const data = JSON.parse(jsonMatch[0]);
+      const data = JSON.parse(jsonMatch[0])
 
-      // Safety normalization
-      data.skills ??= [];
-      data.projects ??= [];
-      data.experience_years ??= null;
-      data.education ??= "Not specified";
+      data.skills ??= []
+      data.projects ??= []
+      data.experience_years ??= null
+      data.education ??= "Not specified"
 
       return data;
     } catch (err) {
-      console.error("Invalid JSON:", raw);
-      throw new Error("AI JSON parse failed");
+      console.error("Invalid JSON:", raw)
+      throw new Error("AI JSON parse failed")
     }
   } catch (err) {
-    console.error("JSON PARSE ERROR:", err);
-    throw new Error("AI returned invalid JSON");
+    console.error("JSON PARSE ERROR:", err)
+    throw new Error("AI returned invalid JSON")
   }
     }

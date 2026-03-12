@@ -34,7 +34,7 @@ const registerUser = async ({ name, email, password }) => {
     { expiresIn: "1d" }
   )
 
-  const { password: _, ...safeUser } = user.toObject();
+  const { password: _, ...safeUser } = user.toObject()
   return { user: safeUser, token }
 }
 
