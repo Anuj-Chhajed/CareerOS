@@ -1,29 +1,36 @@
 const { optimizeBulletAI } = require("./optimizer.service")
-const ResumeAnalysis = require("../models/ResumeAnalysis")
 
 exports.optimizeBullet = async (req, res) => {
   try {
-    const { bullet, role } = req.body
-    const userId = req.user.id
-
-    if (!bullet) {
+    const { bullet, role, contextSkills } = req.body
+    
+    if (!bullet || typeof bullet !== "string") {
       return res.status(400).json({ error: "Original bullet point is required" })
     }
 
-    // SILENTLY FETCH CONTEXT: Get the user's most recent resume analysis
-    const latestAnalysis = await ResumeAnalysis.findOne({ userId }).sort({ createdAt: -1 })
+    const trimmedBullet = bullet.trim()
+
+    // Catch obvious junk before hitting Groq to save tokens
+    if (trimmedBullet.length < 5 || trimmedBullet.split(/\s+/).length < 2) {
+      return res.status(400).json({ 
+        error: "Input too short. Please provide a brief description of a task." 
+      })
+    }
     
     let userContext = null
-    if (latestAnalysis && latestAnalysis.extractedSkills) {
-      userContext = {
-        skills: latestAnalysis.extractedSkills,
-        experience: latestAnalysis.experienceYears
-      }
-      console.log(`⚡ Enhancing optimizer with ${userContext.skills.length} known skills.`)
+    // Use the context skills strictly from the current frontend session
+    if (contextSkills && Array.isArray(contextSkills) && contextSkills.length > 0) {
+      userContext = { skills: contextSkills }
+      console.log(`⚡ Enhancing optimizer with ${userContext.skills.length} active skills.`)
     }
 
     // Pass the context to the AI service
-    const result = await optimizeBulletAI(bullet, role, userContext)
+    const result = await optimizeBulletAI(trimmedBullet, role, userContext)
+    
+    // Catch AI-generated relevancy errors (like long conversational junk)
+    if (result.error) {
+       return res.status(400).json({ error: result.error })
+    }
     
     res.json(result)
   } catch (err) {
