@@ -1,0 +1,30 @@
+.stars-container {
+  position: fixed;
+  inset: 0;
+  height: 200%;
+  pointer-events: none;
+  z-index: -2;
+  animation: scrollStars 40s linear infinite;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+/* Parallax depth */
+.layer-1 { animation-duration: 4s; opacity: 0.4; }
+.layer-2 { animation-duration: 6s; opacity: 0.6; }
+.layer-3 { animation-duration: 8s; opacity: 0.8; }
+
+@keyframes scrollStars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
