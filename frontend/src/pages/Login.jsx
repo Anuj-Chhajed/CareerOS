@@ -1,49 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, ArrowRight, Loader2, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react'
+import { ClipLoader } from "react-spinners"
 import api from "../api"
-import '../styles/Auth.css';
+import '../styles/Auth.css'
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      navigate("/dashboard");
+      navigate("/dashboard")
     }
-  }, [navigate]);
+  }, [navigate])
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+    e.preventDefault()
+    setLoading(true)
+    setError("")
 
     try {
       const res = await api.post("/auth/login", { email, password })
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      navigate("/dashboard");
+      localStorage.setItem("token", res.data.token)
+      localStorage.setItem("user", JSON.stringify(res.data.user))
+      navigate("/dashboard")
     }
     catch (err) {
-      const msg = err.response?.data?.message || "Invalid credentials. Please try again.";
-      setError(msg);
+      const msg = err.response?.data?.message || "Invalid credentials. Please try again."
+      setError(msg)
     }
     finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className="auth-container">
-      {/* Background Ambient Glow */}
       <div className="auth-glow"></div>
 
-      {/* Navbar (Simplified for Auth) */}
       <nav className="auth-nav">
         <Link to="/" className="brand-logo">
           Career<span className="brand-accent">OS</span>
@@ -51,7 +50,6 @@ const Login = () => {
       </nav>
 
       <div className={`auth-card ${loading ? 'loading' : ''}`}>
-        {/* Animated Progress Bar for Submit */}
         <div className="auth-progress-bar"></div>
 
         <div className="auth-header">
@@ -100,10 +98,14 @@ const Login = () => {
           <button type="submit" className="btn btn-primary auth-submit-btn" disabled={loading}>
             {loading ? (
               <>
-                <Loader2 size={18} className="animate-spin" style={{ marginRight: '8px' }} /> Initiating...
+                <ClipLoader size={18} color="#fff" />
+                <span style={{ marginLeft: '8px' }}>Initiating...</span>
               </>
             ) : (
-              'Sign In'
+              <>
+                Sign In
+                <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+              </>
             )}
           </button>
         </form>
@@ -114,7 +116,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
