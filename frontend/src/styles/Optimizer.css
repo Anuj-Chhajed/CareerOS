@@ -1,0 +1,557 @@
+/* Optimizer.css — Resume Bullet Optimizer ("Surgical Precision" aesthetic) */
+.icon-primary {
+    color: var(--primary);
+}
+
+.icon-accent {
+    color: var(--accent);
+}
+
+/* ═══ PAGE HEADER ═══ */
+.optimizer-header {
+    margin-bottom: 2.5rem;
+}
+
+.optimizer-header-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.optimizer-title {
+    font: 700 2.4rem/1.1 'Space Grotesk', sans-serif;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.03em;
+}
+
+.optimizer-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+/* ═══ SPLIT LAYOUT ═══ */
+.optimizer-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* ═══ LEFT PANEL — PDF VIEWER ═══ */
+.optimizer-pdf-panel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.optimizer-panel-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.optimizer-panel-label {
+    font: 600 0.82rem 'Space Grotesk', sans-serif;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.optimizer-panel-hint {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    background: rgba(244, 162, 97, 0.08);
+    color: var(--accent);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Upload zone inside optimizer */
+.optimizer-upload-zone {
+    padding: 4rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px dashed rgba(244, 162, 97, 0.15);
+    margin: 1rem;
+    border-radius: 14px;
+}
+
+.optimizer-upload-zone:hover {
+    border-color: rgba(244, 162, 97, 0.35);
+    background: rgba(244, 162, 97, 0.03);
+}
+
+.optimizer-upload-zone.dragging {
+    border-color: var(--accent);
+    background: rgba(244, 162, 97, 0.06);
+}
+
+.optimizer-upload-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: rgba(244, 162, 97, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    color: var(--accent);
+}
+
+.optimizer-upload-title {
+    font: 600 1.15rem 'Space Grotesk', sans-serif;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+}
+
+.optimizer-upload-sub {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.optimizer-upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--accent);
+    color: #0A0E1A;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.optimizer-upload-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(244, 162, 97, 0.3);
+}
+
+.optimizer-upload-formats {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    margin-top: 0.75rem;
+    opacity: 0.5;
+}
+
+/* PDF display */
+.pdf-viewer-area {
+    max-height: 700px;
+    overflow-y: auto;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.pdf-viewer-area canvas {
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+/* react-pdf text layer — allow selection */
+.pdf-viewer-area .react-pdf__Page {
+    position: relative !important;
+    margin-bottom: 0.5rem;
+}
+
+.pdf-viewer-area .react-pdf__Page__textContent {
+    position: absolute !important;
+    inset: 0 !important;
+    overflow: hidden;
+}
+
+.pdf-viewer-area .react-pdf__Page__textContent span {
+    color: transparent;
+    cursor: text;
+}
+
+.pdf-viewer-area .react-pdf__Page__textContent span::selection {
+    background: rgba(244, 162, 97, 0.35);
+}
+
+.pdf-viewer-area .react-pdf__Page__textContent span::-moz-selection {
+    background: rgba(244, 162, 97, 0.35);
+}
+
+/* PDF controls */
+.pdf-controls {
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pdf-page-info {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.pdf-replace-btn {
+    font-size: 0.78rem;
+    color: var(--accent);
+    background: none;
+    border: 1px solid rgba(244, 162, 97, 0.2);
+    border-radius: 6px;
+    padding: 0.3rem 0.7rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.pdf-replace-btn:hover {
+    border-color: var(--accent);
+    background: rgba(244, 162, 97, 0.06);
+}
+
+/* ═══ FLOATING SELECTION BUTTON ═══ */
+.selection-float-btn {
+    position: fixed;
+    z-index: 9999;
+    background: var(--accent);
+    color: #0A0E1A;
+    font: 700 0.82rem 'Space Grotesk', sans-serif;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(244, 162, 97, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: transform 0.15s;
+    pointer-events: auto;
+}
+
+.selection-float-btn:hover {
+    transform: scale(1.05);
+}
+
+/* ═══ RIGHT PANEL — INPUT + RESULTS ═══ */
+.optimizer-right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.optimizer-input-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+}
+
+.optimizer-input-label {
+    font: 600 0.78rem 'Space Grotesk', sans-serif;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.optimizer-field {
+    margin-bottom: 1.25rem;
+}
+
+.optimizer-field:last-of-type {
+    margin-bottom: 1.5rem;
+}
+
+.optimizer-field label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.optimizer-field label span {
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+.optimizer-textarea {
+    width: 100%;
+    height: 110px;
+    resize: vertical;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-family: inherit;
+    line-height: 1.6;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.optimizer-textarea::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.45;
+}
+
+.optimizer-textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.08);
+}
+
+.optimizer-textarea.has-selection {
+    border-color: var(--accent);
+    background: rgba(244, 162, 97, 0.02);
+}
+
+.optimizer-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.optimizer-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.45;
+}
+
+.optimizer-input:focus {
+    border-color: var(--accent);
+}
+
+.optimizer-submit {
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: #0A0E1A;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.optimizer-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(244, 162, 97, 0.3);
+}
+
+.optimizer-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Error */
+.optimizer-error {
+    margin-bottom: 1rem;
+    padding: 0.7rem 0.85rem;
+    border-radius: 8px;
+    background: rgba(239, 68, 68, 0.06);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.12);
+    font-size: 0.85rem;
+}
+
+/* ═══ RESULTS ═══ */
+.optimizer-results-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Original bullet */
+.original-bullet {
+    background: rgba(239, 68, 68, 0.03);
+    border: 1px solid rgba(239, 68, 68, 0.1);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+}
+
+.original-bullet-label {
+    font: 600 0.68rem 'Space Grotesk', sans-serif;
+    color: #fca5a5;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.35rem;
+}
+
+.original-bullet-text {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.88rem;
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* Comparison strip */
+.comparison-strip {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.comparison-label {
+    font: 600 0.7rem 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 5px;
+}
+
+.comparison-label.label-original {
+    background: rgba(239, 68, 68, 0.08);
+    color: #fca5a5;
+}
+
+.comparison-label.label-optimized {
+    background: rgba(6, 214, 160, 0.08);
+    color: var(--primary);
+}
+
+/* Variation card */
+.variation-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    transition: all 0.25s ease;
+}
+
+.variation-card:hover {
+    border-color: rgba(244, 162, 97, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.variation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+}
+
+.variation-badge {
+    font: 700 0.7rem 'Space Grotesk', sans-serif;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.variation-copy {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.3rem 0.65rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.variation-copy:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.variation-copy.copied {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.variation-text {
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 0.92rem;
+}
+
+/* Empty results */
+.optimizer-empty {
+    text-align: center;
+    padding: 3rem 2rem;
+    border: 2px dashed rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+}
+
+.optimizer-empty-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: rgba(244, 162, 97, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: var(--accent);
+    opacity: 0.4;
+}
+
+.optimizer-empty p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    max-width: 260px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Loading */
+.optimizer-loading {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.optimizer-loading-spinner {
+    display: inline-block;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+}
+
+.optimizer-loading-text {
+    font: 600 0.95rem 'Space Grotesk', sans-serif;
+    color: var(--text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .optimizer-split {
+        grid-template-columns: 1fr;
+    }
+
+    .pdf-viewer-area {
+        max-height: 400px;
+    }
+}
