@@ -1,42 +1,119 @@
-#root {
-  max-width: 1280px;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root {
+  --bg-core: #070708;       /* True ink black */
+  --bg-surface: #121214;
+  --primary: #06D6A0;
+  --primary-dim: rgba(6, 214, 160, 0.15);
+  --primary-hover: #05C090;
+  --accent: #F4A261;
+  --danger: #ef4444;
+  --success: #06D6A0;
+  --text-primary: #f8fafc;
+  --text-secondary: #8892a4;
+  --border-color: rgba(255, 255, 255, 0.04);
+  --border-glow: rgba(6, 214, 160, 0.25);
+  --nav-height: 70px;
+  --wrapper-width: 1280px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-core);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.font-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.content-wrapper {
+  max-width: var(--wrapper-width);
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 0 1.5rem;
+  width: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.btn-primary {
+  background: var(--primary);
+  color: #0A0E1A;
+  font-weight: 600;
+  box-shadow: 0 0 20px var(--primary-dim);
 }
 
-.card {
-  padding: 2em;
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
 }
 
-.read-the-docs {
-  color: #888;
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-ghost:hover {
+  border-color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+/* ═══ Button Enhancements ═══ */
+.btn-primary {
+  background: var(--primary);
+  color: #000; /* Contrast against the teal */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.85rem; /* Smaller, punchier text looks more premium */
+  box-shadow: 0 8px 20px -8px var(--primary-dim);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px); /* Slightly more lift */
+  box-shadow: 0 12px 24px -10px var(--primary-dim);
 }
