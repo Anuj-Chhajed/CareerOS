@@ -1,7 +1,14 @@
 import { useEffect, useRef } from "react"
+import { useLocation } from "react-router-dom"
 
 export default function NetworkBackground() {
   const canvasRef = useRef(null)
+  const location = useLocation()
+  const isInteractive = useRef(location.pathname === "/")
+
+  useEffect(() => {
+    isInteractive.current = location.pathname === "/"
+  }, [location.pathname])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -24,8 +31,13 @@ export default function NetworkBackground() {
 
     // Track mouse
     window.addEventListener("mousemove", (e) => {
-      mouse.x = e.clientX
-      mouse.y = e.clientY
+      if (isInteractive.current) {
+        mouse.x = e.clientX
+        mouse.y = e.clientY
+      } else {
+        mouse.x = null
+        mouse.y = null
+      }
     })
 
     window.addEventListener("mouseleave", () => {
@@ -110,12 +122,8 @@ export default function NetworkBackground() {
       // Cursor glow
       if (mouse.x && mouse.y) {
         const gradient = ctx.createRadialGradient(
-          mouse.x,
-          mouse.y,
-          0,
-          mouse.x,
-          mouse.y,
-          mouse.radius
+          mouse.x, mouse.y, 0,
+          mouse.x, mouse.y, mouse.radius
         )
         gradient.addColorStop(0, "rgba(16,185,129,0.15)")
         gradient.addColorStop(1, "transparent")
