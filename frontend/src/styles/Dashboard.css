@@ -194,6 +194,8 @@
 /* ═══ STATUS SUMMARY (Orbit Card) ═══ */
 .orbit-card {
   background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 2.5rem;
@@ -408,6 +410,8 @@
   gap: 0.5rem;
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   text-decoration: none;
@@ -479,6 +483,8 @@
 
 .activity-list {
   background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   overflow: hidden;

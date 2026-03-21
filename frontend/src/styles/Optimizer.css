@@ -43,6 +43,8 @@
 /* ═══ LEFT PANEL — PDF VIEWER ═══ */
 .optimizer-pdf-panel {
     background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--border-color);
     border-radius: 20px;
     overflow: hidden;
@@ -256,6 +258,8 @@
 
 .optimizer-input-card {
     background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 1.5rem 1.75rem;
@@ -394,6 +398,8 @@
 /* Original bullet */
 .original-bullet {
     background: rgba(239, 68, 68, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(239, 68, 68, 0.1);
     border-radius: 12px;
     padding: 1rem 1.25rem;
@@ -443,6 +449,8 @@
 /* Variation card */
 .variation-card {
     background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--border-color);
     border-radius: 14px;
     padding: 1.25rem 1.5rem;
@@ -504,6 +512,8 @@
     text-align: center;
     padding: 3rem 2rem;
     border: 2px dashed rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 16px;
 }
 
