@@ -21,7 +21,7 @@ const Analyze = () => {
   const [step, setStep] = useState('upload') // 'upload' | 'analyzing' | 'role-input' | 'scoring'
   const [rawText, setRawText] = useState("")
   const [streamIdx, setStreamIdx] = useState(-1)
-  const streamTimer = useRef(null);
+  const streamTimer = useRef(null)
 
   // Simulate the live analysis stream
   useEffect(() => {
@@ -211,6 +211,11 @@ const Analyze = () => {
                 <CheckCircle size={28} />
               </div>
               <h3 className="role-input-title">Resume Parsed Successfully!</h3>
+              {file && (
+                <div className="uploaded-file-badge">
+                  📄 {file.name}
+                </div>
+              )}
               <p className="role-input-desc">
                 Now tell us the role you're targeting so we can calculate your market fit.
               </p>
