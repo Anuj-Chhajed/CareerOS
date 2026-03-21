@@ -12,7 +12,7 @@
 /* ═══ SIDEBAR ═══ */
 .sidebar {
   width: 240px;
-  background: rgba(6, 8, 18, 0.95);
+  background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-core) 70%);
   backdrop-filter: blur(20px);
   border-right: 1px solid var(--border-color);
   display: flex;
@@ -86,8 +86,10 @@
 
 /* Sidebar Footer */
 .sidebar-footer {
-  padding: 1rem 1rem;
+  padding: 1.2rem 1rem;
   border-top: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.02); 
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -200,7 +202,7 @@
 
 .orbit-content {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto auto 1fr;
   gap: 3rem;
   align-items: center;
 }
@@ -332,6 +334,64 @@
   font-size: 0.9rem;
   color: var(--text-secondary);
   max-width: 340px;
+}
+
+/* ═══ Sparkline Chart Styles ═══ */
+.sparkline-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  flex: 1;
+  padding-left: 2.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sparkline-header {
+  margin-bottom: 5rem;
+}
+
+.sparkline-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0 0 4px 0;
+}
+
+.sparkline-subtitle {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.sparkline-wrapper {
+  width: 100%;
+}
+
+/* ═══ Chart Card Styles ═══ */
+.chart-card {
+  margin-bottom: 3rem; /* 👈 Fixes the Quick Actions overlap! */
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+}
+
+.chart-card-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #f8fafc;
+}
+
+.chart-card-subtitle {
+  margin: 0 0 15px 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 320px; /* 👈 CRITICAL for Recharts */
+  margin-top: auto;
 }
 
 /* ═══ QUICK ACTIONS ═══ */
