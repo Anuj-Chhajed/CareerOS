@@ -2,7 +2,8 @@ import React, { useEffect, useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import DashboardLayout from '../components/DashboardLayout'
 import { motion } from 'framer-motion'
-import { Clock, ArrowRight, Loader2, FileText, TrendingUp, Rocket, BarChart3 } from 'lucide-react'
+import { Clock, ArrowRight, Loader2, FileText, TrendingUp, Rocket } from 'lucide-react'
+import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts"
 import api from '../api'
 import '../styles/History.css'
 
@@ -34,16 +35,23 @@ const History = () => {
     return { total: history.length, best, avg }
   }, [history])
 
+  const getChartColor = (score) => {
+    if (score >= 80) return "#10b981"
+    if (score >= 50) return "#f59e0b"
+    return "#ef4444"
+  }
+
+  const data = [...history].reverse().map((item, i) => ({
+    name: i + 1,
+    score: item.fitScore,
+    role: item.targetRole,
+    fill: getChartColor(item.fitScore)
+  }))
+
   const getScoreTier = (s) => {
     if (s >= 80) return 'score-high'
     if (s >= 50) return 'score-mid'
     return 'score-low'
-  }
-
-  const getBarColor = (s) => {
-    if (s >= 80) return 'var(--primary)'
-    if (s >= 50) return 'var(--accent)'
-    return '#ef4444'
   }
 
   return (
@@ -88,24 +96,45 @@ const History = () => {
             {/* Score trend visualization */}
             <div className="history-trend-card">
               <div className="history-trend-header">
-                <span className="history-trend-title">Score Progression</span>
+                <div className="history-trend-title">
+                  <TrendingUp size={16} className="icon-primary" />
+                  <span>Score Progression</span>
+                </div>
                 <span className="history-trend-count">{history.length} analyses</span>
               </div>
-              <div className="trend-chart">
-                {[...history].reverse().map((item, i) => (
-                  <motion.div
-                    key={item._id}
-                    className="trend-bar"
-                    style={{
-                      height: `${Math.max(item.fitScore, 5)}%`,
-                      background: getBarColor(item.fitScore),
+
+              <div className="history-chart-container">
+                <ResponsiveContainer>
+                  <BarChart
+                    data={data}
+                    barCategoryGap="10%"
+                  >
+                  <XAxis hide />
+                  <Tooltip
+                    cursor={{ fill: "rgba(255,255,255,0.05)" }}
+                    content={({ active, payload }) => {
+                      if (active && payload?.length) {
+                        const d = payload[0].payload
+                        return (
+                          <div className="history-tooltip">
+                            <div>{d.role}</div>
+                            <strong>{d.score}/100</strong>
+                          </div>
+                        )
+                      }
+                      return null
                     }}
-                    initial={{ height: 0 }}
-                    animate={{ height: `${Math.max(item.fitScore, 5)}%` }}
-                    transition={{ duration: 0.5, delay: i * 0.04 }}
-                    title={`${item.targetRole}: ${item.fitScore}/100`}
                   />
-                ))}
+
+                  <Bar
+                    dataKey="score"
+                    radius={[6, 6, 0, 0]}
+                    animationDuration={1000}
+                    animationEasing="ease-out"
+                    activeBar={{ fillOpacity: 0.9 }}
+                  />
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             </div>
 
