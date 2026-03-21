@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   UploadCloud, Cpu, TrendingUp, ChevronDown, LayoutDashboard,
   Search, Zap, Map, BarChart3, Target
-} from 'lucide-react';
-import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-import { motion } from "framer-motion";
-import Reveal from "../components/Reveal";
-import '../styles/Landing.css';
+} from 'lucide-react'
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa"
+import { motion } from "framer-motion"
+import Reveal from "../components/Reveal"
+import '../styles/Landing.css'
 
 const LandingPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-  }, []);
+    setIsLoggedIn(!!localStorage.getItem("token"))
+  }, [])
 
   return (
     <div className="landing-page">
@@ -27,7 +27,7 @@ const LandingPage = () => {
         transition={{ duration: 0.6 }}
       >
         <div className="content-wrapper nav-content">
-          <div className="brand-logo">Career<span className="brand-accent">OS</span></div>
+          <Link to="/" className="brand-logo">Career<span className="brand-accent">OS</span></Link>
           <div className="nav-actions">
             {isLoggedIn ? (
               <Link to="/dashboard" className="btn btn-primary">
@@ -325,7 +325,7 @@ const LandingPage = () => {
       </footer>
 
     </div>
-  );
-};
+  )
+}
 
-export default LandingPage;
+export default LandingPage
