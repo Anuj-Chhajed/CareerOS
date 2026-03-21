@@ -9,14 +9,14 @@ import History from './pages/History'
 import Roadmap from './pages/Roadmap'
 import RoadmapsList from './pages/RoadmapsList'
 import Optimizer from './pages/Optimizer'
-import StarBackground from './components/StarBackground'
+import NetworkBackground from './components/NetworkBackground'
 import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 
 function App() {
   return (
     <Router>
-      <StarBackground />
+      <NetworkBackground />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />

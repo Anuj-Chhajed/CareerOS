@@ -14,10 +14,10 @@ const DashboardLayout = ({ children }) => {
   }
 
   const navItems = [
-    { icon: <LayoutDashboard size={20} />, label: "Command Center", path: "/dashboard" },
+    { icon: <LayoutDashboard size={20} />, label: "Dashboard", path: "/dashboard" },
     { icon: <FileText size={20} />, label: "New Analysis", path: "/dashboard/analyze" },
     { icon: <Clock size={20} />, label: "My History", path: "/dashboard/history" },
-    { icon: <Map size={20} />, label: "Trajectory", path: "/dashboard/roadmaps" },
+    { icon: <Map size={20} />, label: "Roadmaps", path: "/dashboard/roadmaps" },
     { icon: <Zap size={20} />, label: "Optimizer", path: "/dashboard/optimizer" }
   ]
 
