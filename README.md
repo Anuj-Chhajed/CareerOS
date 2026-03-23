@@ -131,23 +131,17 @@ LLMs are notorious for returning inconsistent JSON or hallucinating fake metrics
 
 ## 📸 Platform Sneak Peek
 
-<details>
-<summary><b>1. Interactive Dashboard</b></summary>
-<i>Displays overall trajectory, highest scores, and recent mission logs using ApexCharts.</i><br/>
-<img src="frontend/public/Dashboard.png" alt="Dashboard"/>
-</details>
+### 1. Interactive Dashboard
+*Displays overall trajectory, highest scores, and recent mission logs using ApexCharts.*
+<img src="frontend/public/Dashboard.png" alt="Dashboard" width="800"/>
 
-<details>
-<summary><b>2. In-Depth Analysis & Scoring</b></summary>
-<i>Shows the ATS Gauge, Critical Skill Gaps, and Extracted Data.</i><br/>
-<img src="frontend/public/analysis.png" alt="Analysis"/>
-</details>
+### 2. In-Depth Analysis & Scoring
+*Shows the ATS Gauge, Critical Skill Gaps, and Extracted Data.*
+<img src="frontend/public/analysis.png" alt="Analysis" width="800"/>
 
-<details>
-<summary><b>3. AI Bullet Optimizer</b></summary>
-<i>The side-by-side PDF viewer and XYZ-formula bullet generator.</i><br/>
-<img src="frontend/public/optimizer.png" alt="Optimizer"/>
-</details>
+### 3. AI Bullet Optimizer
+*The side-by-side PDF viewer and XYZ-formula bullet generator.*
+<img src="frontend/public/optimizer.png" alt="Optimizer" width="800"/>
 
 ---
 
