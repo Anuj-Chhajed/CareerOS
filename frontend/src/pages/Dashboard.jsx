@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { Rocket, Map, Zap, ArrowRight, Activity, Clock, TrendingUp } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LabelList } from 'recharts'
 import Chart from 'react-apexcharts'
+import { ClipLoader } from 'react-spinners'
 import api from '../api'
 import '../styles/Dashboard.css'
 
@@ -14,6 +15,7 @@ const Dashboard = () => {
   const [recent, setRecent] = useState([])
   const [chartData, setChartData] = useState([])
   const [trendData, setTrendData] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -50,6 +52,8 @@ const Dashboard = () => {
         setChartData(bestRoles)
       } catch (err) {
         console.error("Failed to load dashboard stats", err)
+      } finally {
+        setIsLoading(false)
       }
     }
     fetchStats()
@@ -68,6 +72,17 @@ const Dashboard = () => {
   }
 
   const lastAnalysis = recent.length > 0 ? recent[0] : null
+
+  if (isLoading) {
+    return (
+      <DashboardLayout>
+        <div className="page-loading-full">
+          <ClipLoader color="#06D6A0" size={80} />
+          <p className="loading-text">Syncing data...</p>
+        </div>
+      </DashboardLayout>
+    )
+  }
 
   return (
     <DashboardLayout>
