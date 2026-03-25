@@ -202,7 +202,7 @@ npm run dev
 
 ## 🔮 Future Roadmap
 
-- [ ] **Direct Job Matching:** One-click links to actual job postings that match your current fit score.
+- [ ] **Direct Job Matching:** Discover and apply to personalized job opportunities aligned with your fit score—just one click away.
 - [ ] **Curated Video Learning:** Automatically fetch and embed top-rated YouTube crash courses and tutorials directly into the generated weekly learning roadmaps.
 - [ ] **Interview Simulator:** A chatbot that asks technical questions based strictly on the user's identified skill gaps.
 
